@@ -4,10 +4,8 @@
       <el-main>
         <div class='card-login'>
           <el-space direction='vertical' :size='40'>
-            <!-- <span class='desktopLogoApp'>
-              <img src="../../assets/img/electron-icon.svg">
-            </span> -->
-            <span class='title-login'>Inicia sesion</span>
+            <el-space />
+            <el-space />
             <el-input v-model="formLogin.email"/>
             <div class='inputPassword'>
               <el-input v-model="formLogin.password" :type='showPassword ?  "password" : "text" '/>
