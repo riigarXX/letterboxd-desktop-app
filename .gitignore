@@ -1,0 +1,7 @@
+# Dependency directories
+node_modules/
+.github
+.vscode
+LICENSE
+patches
+*.md
