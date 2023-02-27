@@ -5,7 +5,8 @@ import moment from 'moment'
 import axios from 'axios'
 import router from './routes/router'
 import 'element-plus/dist/index.css'
-import './assets/styles/style.css'
+import './assets/styles/css/style.css'
+import './assets/styles/sass/style.sass'
 import './samples/node-api'
 
 
