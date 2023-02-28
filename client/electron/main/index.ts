@@ -1,4 +1,4 @@
-import { app, BrowserWindow, shell, ipcMain } from 'electron'
+import { app, BrowserWindow, shell, ipcMain,nativeTheme, systemPreferences } from 'electron'
 import path from 'path/posix';
 import { release } from 'node:os'
 import { join } from 'node:path'
@@ -132,4 +132,14 @@ ipcMain.handle('open-win', (_, arg) => {
   } else {
     childWindow.loadFile(indexHtml, { hash: arg })
   }
+})
+
+ipcMain.handle('dark-mode', () => {
+  // console.log('pasamos',nativeTheme.shouldUseDarkColors);
+  if (nativeTheme.shouldUseDarkColors) {
+    nativeTheme.themeSource = 'light'
+  } else {
+    nativeTheme.themeSource = 'dark'
+  }
+  return nativeTheme.shouldUseDarkColors
 })

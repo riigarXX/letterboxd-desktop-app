@@ -2,12 +2,14 @@
   --el-border-color-lighter:rgb(255, 163, 77);
   --el-fill-color-blank:radial-gradient( rgb(19, 30, 37) 24.5%);
   --el-color-primary-light-9:rgb(255, 163, 77);
-  --el-color-primary:rgb(19, 30, 37) 24.5%;
+  --el-color-primary:rgb(19, 30, 37);
   --el-border-color:rgb(255, 163, 77);
   --el-text-color-regular:rgb(255, 163, 77);
   --el-text-color:rgb(255, 163, 77);
   --el-text-color-primary:rgb(255, 163, 77);
   --el-card-border-radius:4px;
+  --el-main-padding:4px;
+  --el-main-error:rgb(246,123,115)
 }
 .drag{
   -webkit-app-region:drag
@@ -62,12 +64,20 @@ body{
 .el-card__header{
   border: 0px;
 }
+.cardOptions {
+  /* width: 100%; */
+  height: 100%;
+  border-radius: var(--el-card-border-radius);
+  background-color: var(--el-text-color) ;
+  color: var(--el-color-primary);
+  padding: var(--el-main-padding);
+}
 .el-table{
   background:radial-gradient( rgb(19, 30, 37) 24.5%, rgb(19, 30, 37) 66%) !important ;
   color:rgb(255, 163, 77);
 }
 .date {
-  color: white;
+  color: var(--el-text-color-primary);
 }
 .el-calendar-table td.is-today {
   background-color: transparent !important;
@@ -107,7 +117,7 @@ body{
   align-items: center;
   justify-content: center;
 }
-.el-main{
+.mainLogin{
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
@@ -146,15 +156,9 @@ body{
 .desktopLogoApp{
   animation: icon 5s linear infinite;
 }
-/* .desktopLogoApp img{
-  width: 60px;
-  height: 60px;
+.el-switch__core .is-checked {
+  color:var(--el-color-primary)
 }
-@keyframes icon {
- from {
-  transform: rotate(0);
- } 
- to {
-  transform: rotate(360deg);
- } 
-} */
+.el-switch__core {
+  background-color:var(--el-main-error)
+}

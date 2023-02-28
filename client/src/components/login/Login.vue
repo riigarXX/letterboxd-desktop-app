@@ -1,7 +1,7 @@
 <template lang="">
   <div>
     <el-container class="container">
-      <el-main>
+      <el-main class='mainLogin'>
         <div class='card-login'>
           <el-space direction='vertical' :size='40'>
             <el-space />
