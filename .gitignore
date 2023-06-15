@@ -5,3 +5,4 @@ node_modules/
 LICENSE
 patches
 *.md
+.env
