@@ -1,4 +1,4 @@
-import { app, BrowserWindow, shell, ipcMain,nativeTheme, systemPreferences } from 'electron'
+import { app, BrowserWindow, shell, ipcMain, nativeTheme, systemPreferences } from 'electron'
 import path from 'path/posix';
 import { release } from 'node:os'
 import { join } from 'node:path'
@@ -47,14 +47,20 @@ async function createWindow() {
     title: 'Main window',
     icon: join(process.env.PUBLIC, 'favicon.ico'),
     titleBarStyle: 'hidden',
-    transparent:true,
+    transparent: true,
+    width:1400,
+    height:1000,
+    maxWidth:1400,
+    maxHeight:1000,
+    minWidth:1400,
+    minHeight:1000,
     titleBarOverlay: {
       color: '#2f3241',
       symbolColor: '#74b1be',
       height: 20
     },
     webPreferences: {
-      sandbox:false,
+      sandbox: false,
       // Warning: Enable nodeIntegration and disable contextIsolation is not secure in production
       // Consider using contextBridge.exposeInMainWorld
       // Read more on https://www.electronjs.org/docs/latest/tutorial/context-isolation
@@ -110,11 +116,16 @@ app.on('activate', () => {
 })
 
 // New window example arg: new windows url
-ipcMain.handle('open-win', (_, arg) => {
-  console.log("pasamos");
-  const childWindow = new BrowserWindow({
+ipcMain.handle('openWindow', (_, arg) => {
+  const loadFilmWindow = new BrowserWindow({
     titleBarStyle: 'hidden',
-    transparent:true,
+    transparent: true,
+    width:1400,
+    height:1000,
+    maxWidth:1400,
+    maxHeight:1000,
+    minWidth:1400,
+    minHeight:1000,
     titleBarOverlay: {
       color: '#2f3241',
       symbolColor: '#74b1be',
@@ -126,16 +137,15 @@ ipcMain.handle('open-win', (_, arg) => {
       contextIsolation: false,
     },
   })
-
+  loadFilmWindow.webContents.openDevTools()
   if (process.env.VITE_DEV_SERVER_URL) {
-    childWindow.loadURL(`${url}#${arg}`)
+    loadFilmWindow.loadURL(`${url}#${arg}`)
   } else {
-    childWindow.loadFile(indexHtml, { hash: arg })
+    loadFilmWindow.loadFile(indexHtml, { hash: arg })
   }
 })
 
 ipcMain.handle('dark-mode', () => {
-  // console.log('pasamos',nativeTheme.shouldUseDarkColors);
   if (nativeTheme.shouldUseDarkColors) {
     nativeTheme.themeSource = 'light'
   } else {

@@ -14,11 +14,11 @@
       </template>
       <el-menu-item-group>
         <!-- <template #title><span>Group One</span></template> -->
-        <router-link to="/rutina">
-          <el-menu-item index="1-1">Mi rutina</el-menu-item>
+        <router-link to="/peliculas">
+          <el-menu-item index="1-1">Mis peliculas</el-menu-item>
         </router-link>
-        <router-link to="/dieta">
-          <el-menu-item index="1-1">Mi dieta</el-menu-item>
+        <router-link to="/pendientes">
+          <el-menu-item index="1-1">Mis pendientes</el-menu-item>
         </router-link>
       </el-menu-item-group>
     </el-sub-menu>

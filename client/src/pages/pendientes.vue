@@ -1,13 +1,13 @@
 <template lang="">
   <div>
-    <Perfil/>
+    <Pendientes/>
   </div>
 </template>
 <script>
-import Perfil from '../components/rutina/Rutina.vue'
+import Pendientes from '../components/pendientes/Pendientes.vue'
 export default {
   components:{
-    Perfil
+    Pendientes
   }
 }
 </script>

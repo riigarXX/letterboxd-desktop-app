@@ -1,3 +1,7 @@
+<script lang="ts" setup>
+import Calendar from '../UI/Calendar.vue'
+
+</script>
 <template lang="">
   <div>
     <el-card>
@@ -11,12 +15,4 @@
     </el-card>
   </div>
 </template>
-<script lang="ts" setup>
-import { defineComponent } from 'vue'
-import Calendar from '../UI/Calendar.vue'
 
-defineComponent({
-  Calendar
-})
-
-</script>

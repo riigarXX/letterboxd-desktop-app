@@ -1,15 +1,15 @@
 <template lang="">
   <div>
-    <Entrenamientos/>
+    <Pelicula/>
   </div>
 </template>
 <script lang="ts" setup>
 import { defineComponent } from 'vue';
-import Entrenamientos from '../components/entrenamientos/Entrenamientos.vue'
+import Pelicula from '../components/pelicula/Pelicula.vue'
 
 
 defineComponent({
-  Entrenamientos  
+  Pelicula  
 })
 
 </script>

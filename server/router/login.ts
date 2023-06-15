@@ -1,11 +1,9 @@
-const express = require('express')
+import express from 'express'
 const router = express.Router()
+const {createUser,checkUserCredentials} = require('../controllers/auth/authController')
 
-router.get('/',(req:Request,res:Response) => {
-  res.json()
-})
-router.post('/adios',(req:Request,res:Response) => {
-  res.json()
-})
+
+router.post('/createUser', createUser )
+router.post('/checkUserCredentials',checkUserCredentials)
 
 module.exports = router

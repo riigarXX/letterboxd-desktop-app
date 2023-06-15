@@ -1,0 +1,34 @@
+@import "Card"
+@import "Layout"
+@import "Body"
+@import "Calendar"
+@import "Login"
+@import "Table"
+@import "Options"
+
+$primary-color-dark: rgb(19, 30, 37)
+$primary-color-ligth: rgb(233,105,85)
+
+:root 
+  --el-border-color-lighter: rgb(255, 163, 77)
+  --el-fill-color-blank: rgb(19, 30, 37)
+  --el-color-primary-light-9: rgb(255, 163, 77)
+  --el-color-primary: #{$primary-color-dark}
+  --el-border-color: rgb(255, 163, 77)
+  --el-text-color-regular: rgb(255, 163, 77)
+  --el-text-color: rgb(255, 163, 77)
+  --el-text-color-primary: rgb(255, 163, 77)
+  --el-card-border-radius: 4px
+  --el-main-padding: 4px
+  --el-main-error: rgb(246,123,115)
+  --primary-circle: rgb(255, 163, 77)
+  --secondary-circle: rgb(255, 124, 0)
+.drag
+  -webkit-app-region: drag
+
+.no-drag
+  -webkit-app-region: no-drag
+
+.title
+  color: var(--el-text-color)
+  font-size: 20px

@@ -5,12 +5,15 @@
         <el-row>
           {{ data.day.split('-')[1] }} - {{ data.day.split('-')[2] }}
         </el-row>
-        <div v-for="(item, index) in entrenamientos(data.day)" :key="index">
-          <el-row >
-            <el-col class="showTraining">
-              <!--<router-link :to='`/entrenamientos/${item.idFirebase}`'>-->
-                <el-button @click="loadTraining(item.idFirebase)" size="small">Ver entrenamiento</el-button>
-              <!--</router-link>-->
+        <div>
+          <el-row>
+            <el-col v-for="(item, index) in filmsWatched(data.day)" :key="index">
+              <el class="">
+                <el-button @click="loadFilm(item._id)" size="small">Ver película</el-button>
+              </el>
+            </el-col>
+            <el-col class="addTraining">
+              <el-button @click="addFilm(data.day)" size="small">Agregar película</el-button>
             </el-col>
           </el-row>
         </div>
@@ -20,32 +23,38 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, toRefs, onMounted, Ref } from "vue";
-import axios, { AxiosResponse } from "axios";
-import Entrenamiento from '../../../../server/types/Entrenamiento'
-import { ElMessage, ElMessageBox } from "element-plus";
-import { useRoute } from "vue-router";
+import { ref, onMounted, Ref } from "vue";
+import { AxiosResponse } from "axios";
 import { ipcRenderer } from "electron";
+import api from "../../api/axiosInstance";
+import moment from 'moment'
+import FilmInterface from "../../../../server/interfaces/FilmInterface";
 
 onMounted(() => {
-  loadTrainings()
+  loadFilms()
 })
 
-const arrayData: Ref<Array<Entrenamiento>> = ref([])
+const arrayData: Ref<Array<FilmInterface>> = ref([])
 
-const loadTrainings = () => {
-  axios.get('http://localhost:3000/calendar/getTrainings').then((res: AxiosResponse<Array<Entrenamiento>>) => {
+const loadFilms = () => {
+  api('/film/getFilms').then((res: AxiosResponse<Array<FilmInterface>>) => {
     arrayData.value = res.data
   })
 }
 
-const entrenamientos = (date: string) => {
-  return arrayData.value.filter((item:Entrenamiento ) => {
-    return date == item.fechaFormated
+const filmsWatched = (date: Date) => {
+  return arrayData.value.filter((item: FilmInterface) => {
+    return moment(date).format('YYYY-MM-DD') === moment(item.fechaInsercion).format('YYYY-MM-DD')
   })
 };
-const loadTraining = (idFirebase:string) => {
-  ipcRenderer.invoke(`open-win`,(`entrenamientos/${idFirebase}`))
+const loadFilm = (idFilm: string) => {
+  ipcRenderer.invoke(`openWindow`, (`loadFilm/${idFilm}`))
+}
+const hasFilms = (date: Date) => {
+  return filmsWatched(date).length > 0;
+};
+const addFilm = (date: Date) => {
+  ipcRenderer.invoke(`openWindow`, (`addFilm/${date}`))
 }
 
 </script>

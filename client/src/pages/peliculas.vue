@@ -1,13 +1,13 @@
 <template lang="">
   <div>
-    <Dieta/>
+    <Peliculas/>
   </div>
 </template>
 <script>
-import Dieta from '../components/dieta/Dieta.vue'
+import Peliculas from '../components/peliculas/Peliculas.vue'
 export default {
   components:{
-    Dieta
+    Peliculas
   }
 }
 </script>
