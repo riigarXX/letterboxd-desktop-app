@@ -50,10 +50,6 @@ async function createWindow() {
     transparent: true,
     width:1400,
     height:1000,
-    maxWidth:1400,
-    maxHeight:1000,
-    minWidth:1400,
-    minHeight:1000,
     titleBarOverlay: {
       color: '#2f3241',
       symbolColor: '#74b1be',
@@ -122,10 +118,6 @@ ipcMain.handle('openWindow', (_, arg) => {
     transparent: true,
     width:1400,
     height:1000,
-    maxWidth:1400,
-    maxHeight:1000,
-    minWidth:1400,
-    minHeight:1000,
     titleBarOverlay: {
       color: '#2f3241',
       symbolColor: '#74b1be',

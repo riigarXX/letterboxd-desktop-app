@@ -1,5 +1,6 @@
 import { NavigationGuardNext, RouteLocationNormalized } from 'vue-router';
 import { getToken } from '../utils/auth'; // Importa una función para obtener el token JWT almacenado en el cliente
+import api from '../api/axiosInstance';
 
 export function isAuthenticated(
   to: RouteLocationNormalized,
@@ -9,7 +10,15 @@ export function isAuthenticated(
   const token = getToken();
 
   if (token) {
-    next();
+    api.post("/jwt/jwtValidateToken",{token}).then(response => {
+      console.log(response)
+      if(response.status){
+        next()
+      }
+    }).catch((e) => {
+      localStorage.removeItem("token")
+      next("/")
+    })
   } else {
     console.log('volvemos a login')
     next('/');
