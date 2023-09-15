@@ -66,18 +66,18 @@ const toDashBoard = async () => {
   <div class="flex justify-center items-center h-screen w-screen">
     <main>
       <div
-        class="grid grid-row justify-center items-center bg-gradient-to-tl from-orange from-50%  to-ligthOrange to-50% h-[24rem] w-[28rem] rounded-sm p-4">
-        <div class="grid grid-col ">
-          <input class="mb-4 p-4 bg-dark text-orange border-0 outline-none rounded-sm w-[20rem] placeholder-orange text-center"
+        class="flex flex-row justify-center items-center bg-gradient-to-tl from-ligthModeColors-orange from-50%  to-ligthModeColors-ligthOrange to-50% h-[24rem] w-[28rem] rounded-sm p-4">
+        <div class="flex flex-col justify-center items-center">
+          <input class="mb-10 p-2 bg-ligthModeColors-background dark:bg-darkModeColors-background text-ligthModeColors-text dark:text-darkModeColors-text border-0 outline-none rounded-sm w-[20rem] placeholder-ligthModeColors-text dark:placeholder-darkModeColors-text text-center"
             v-model="formLogin.name" placeholder="Nombre de usuario" />
 
           <input v-model="formLogin.password" :type="showPassword ? 'password' : 'text'"
-            class="mb-4 p-4 bg-dark text-orange border-0 outline-none rounded-sm w-[20rem] placeholder-orange text-center"
+            class="mb-10 p-2 bg-ligthModeColors-background dark:bg-darkModeColors-background text-ligthModeColors-text dark:text-darkModeColors-text border-0 outline-none rounded-sm w-[20rem] placeholder-orange text-center"
             placeholder="Contraseña" />
-            <button class="text-orange bg-dark px-4 py-2 rounded-sm w-52 text-center" @click="toDashBoard()">
+            <button class="text-orange bg-bgdark dark:bg-bgligth  py-1 rounded-sm w-32 " @click="toDashBoard()">
             Inicia sesión
           </button>
-          <span v-if="objPrintInfo.show" :class="`text-center bg-${objPrintInfo.color}-500 p-2 rounded mt-4 self-center`">
+          <span v-if="objPrintInfo.show" :class="`text-center bg-${objPrintInfo.color}-500 p-2 rounded mt-4 justify-around`">
             {{ objPrintInfo.msg }}
           </span>
         </div>
