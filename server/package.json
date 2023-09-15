@@ -16,5 +16,11 @@
     "mongodb": "^5.1.0",
     "mongoose": "~6.10.0",
     "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.14",
+    "@types/morgan": "^1.9.5",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
   }
 }

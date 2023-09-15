@@ -46,10 +46,10 @@ async function createWindow() {
   win = new BrowserWindow({
     title: 'Main window',
     icon: join(process.env.PUBLIC, 'favicon.ico'),
-    titleBarStyle: 'hidden',
-    transparent: true,
-    width:1400,
-    height:1000,
+    // titleBarStyle: 'hidden',
+    // transparent: true,
+    // width:1400,
+    // height:1000,
     titleBarOverlay: {
       color: '#2f3241',
       symbolColor: '#74b1be',
@@ -130,6 +130,7 @@ ipcMain.handle('openWindow', (_, arg) => {
     },
   })
   loadFilmWindow.webContents.openDevTools()
+
   if (process.env.VITE_DEV_SERVER_URL) {
     loadFilmWindow.loadURL(`${url}#${arg}`)
   } else {

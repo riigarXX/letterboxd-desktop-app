@@ -4,7 +4,6 @@ dotenv.config();
 
 const { PORT, DB_MONGO, DB_BBDD, JWT_SECRET_KEY } = process.env;
 
-// Verificar que las variables requeridas están definidas
 if (!PORT) {
   throw new Error('La variable de entorno PORT no está definida en el archivo .env');
 }

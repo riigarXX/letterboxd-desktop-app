@@ -7,7 +7,7 @@ import Calendar from '../UI/Calendar.vue'
     <el-card>
       <template #header>
       <div class="card-header">
-        <span class='title'>Rutina</span>
+        <span class='title'>Mis peliculas</span>
         <span class='date'>{{$moment().format('YYYY-MM-DD')}}</span>
       </div>
     </template>
