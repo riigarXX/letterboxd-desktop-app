@@ -1,25 +1,9 @@
 <template lang="">
-    <el-card>
-      <span class='title'>Opciones</span>
-      <el-divider/>
-      <div class='cardOptions'>
-        Modo oscuro 
-        <el-switch @click='changeOSTheme()' v-model="opciones.nigthMode"/>
-      </div>
-    </el-card>
+  <Card :title="'Opciones'">
+    <div>Modo oscuro</div>
+  </Card>
 </template>
 <script lang="ts" setup>
-import { ipcRenderer } from 'electron';
-import { ref } from 'vue';
-
-const opciones = ref <Object> ({
-  nigthMode:Boolean,
-})
-
-const changeOSTheme = () => {
-  ipcRenderer.invoke('dark-mode')
-}
+import Card from "../UI/Card.vue";
 </script>
-<style lang="">
-  
-</style>
+<style lang=""></style>

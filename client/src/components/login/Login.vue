@@ -1,87 +1,102 @@
 <script lang="ts" setup>
-import { useRouter } from 'vue-router'
-import { ref } from 'vue'
-import axios, { AxiosResponse } from 'axios';
-import {
-  TurnOff,
-  Open
-} from '@element-plus/icons-vue'
+import { useRouter } from "vue-router";
+import { ref } from "vue";
+import axios, { AxiosResponse } from "axios";
+import { TurnOff, Open } from "@element-plus/icons-vue";
+import ResponseMsgType from "../../types/ResponseMsgType";
 
-let showPassword = ref<boolean>(true)
+let showPassword = ref<boolean>(true);
 
 const formLogin = ref({
-  name: '' as string,
-  password: '' as string
-})
+  name: "" as string,
+  password: "" as string,
+});
 const response = ref({
   status: false as Boolean,
-  jwt: '' as string
-})
-const objPrintInfo = ref<Object>({
-  error: false,
+  jwt: "" as string,
+});
+const objPrintInfo = ref<ResponseMsgType>({
+  color: "",
   show: false,
-  msg: ''
-})
+  msg: "",
+});
 
 const changeTypePasswordInput = () => {
-  showPassword.value = !showPassword.value
-}
+  showPassword.value = !showPassword.value;
+};
 
-const router = useRouter()
+const router = useRouter();
 
 const toDashBoard = async () => {
   try {
-    const data: AxiosResponse = await axios.post('http://localhost:3000/login/checkUserCredentials', { name: formLogin.value.name, password: formLogin.value.password })
-    response.value = await data.data
-    localStorage.setItem('token', response.value.jwt)
+    const data: AxiosResponse = await axios.post(
+      "http://localhost:3000/login/checkUserCredentials",
+      { name: formLogin.value.name, password: formLogin.value.password },
+    );
+    response.value = await data.data;
+    localStorage.setItem("token", response.value.jwt);
     objPrintInfo.value = {
       msg: `Bienvenido de nuevo ${formLogin.value.name}`,
-      color: 'green',
-      show: true
-    }
+      color: "green",
+      show: true,
+    };
     setTimeout(() => {
       router.push({
-        path: '/dashboard'
-      })
-    }, 2000)
+        path: "/dashboard",
+      });
+    }, 2000);
   } catch (e) {
     objPrintInfo.value = {
       msg: `Usuario no encontrado`,
-      color: 'red',
-      show: true
-    }
+      color: "red",
+      show: true,
+    };
     setTimeout(() => {
       objPrintInfo.value = {
         msg: ``,
-        color: '',
-        show: false
-      }
-    }, 2000)
-
+        color: "",
+        show: false,
+      };
+    }, 2000);
   }
-}
-
+};
 </script>
-<template >
-  <div class="flex justify-center items-center h-screen w-screen">
-    <main>
+<template>
+  <div class="flex h-screen w-screen items-center justify-center">
+    <div
+      class="flex h-[24rem] w-[28rem] flex-row items-center justify-center rounded-sm bg-gradient-to-tl from-ligthModeColors-red from-50% to-ligthModeColors-ligthRed to-50% p-4 dark:from-darkModeColors-orange dark:to-darkModeColors-ligthOrange"
+    >
       <div
-        class="flex flex-row justify-center items-center bg-gradient-to-tl from-ligthModeColors-orange from-50%  to-ligthModeColors-ligthOrange to-50% h-[24rem] w-[28rem] rounded-sm p-4">
-        <div class="flex flex-col justify-center items-center">
-          <input class="mb-10 p-2 bg-ligthModeColors-background dark:bg-darkModeColors-background text-ligthModeColors-text dark:text-darkModeColors-text border-0 outline-none rounded-sm w-[20rem] placeholder-ligthModeColors-text dark:placeholder-darkModeColors-text text-center"
-            v-model="formLogin.name" placeholder="Nombre de usuario" />
-
-          <input v-model="formLogin.password" :type="showPassword ? 'password' : 'text'"
-            class="mb-10 p-2 bg-ligthModeColors-background dark:bg-darkModeColors-background text-ligthModeColors-text dark:text-darkModeColors-text border-0 outline-none rounded-sm w-[20rem] placeholder-orange text-center"
-            placeholder="Contraseña" />
-            <button class="text-orange bg-bgdark dark:bg-bgligth  py-1 rounded-sm w-32 " @click="toDashBoard()">
+        class="grid grid-flow-row place-items-center justify-items-center gap-10"
+      >
+        <div class="col-span-full text-center">
+          <input
+            class="mb-10 w-[20rem] rounded-sm border-0 bg-ligthModeColors-background p-2 text-center text-ligthModeColors-red placeholder-ligthModeColors-red outline-none dark:bg-darkModeColors-background dark:text-darkModeColors-orange dark:placeholder-darkModeColors-orange"
+            v-model="formLogin.name"
+            placeholder="Nombre de usuario"
+          />
+          <input
+            v-model="formLogin.password"
+            :type="showPassword ? 'password' : 'text'"
+            class="mb-10 w-[20rem] rounded-sm border-0 bg-ligthModeColors-background p-2 text-center text-ligthModeColors-red placeholder-ligthModeColors-red outline-none dark:bg-darkModeColors-background dark:text-darkModeColors-orange dark:placeholder-darkModeColors-orange"
+            placeholder="Contraseña"
+          />
+          <button
+            class="w-32 rounded-sm bg-ligthModeColors-background py-1 text-ligthModeColors-red dark:bg-darkModeColors-background dark:text-darkModeColors-orange"
+            @click="toDashBoard()"
+          >
             Inicia sesión
           </button>
-          <span v-if="objPrintInfo.show" :class="`text-center bg-${objPrintInfo.color}-500 p-2 rounded mt-4 justify-around`">
+        </div>
+        <div class="col-span-full h-[20px] text-center">
+          <span
+            v-if="objPrintInfo.show"
+            :class="`dark:bg-darkModeColors-lig  justify-around  rounded-sm  bg-ligthModeColors-background px-4 py-2 text-center text-ligthModeColors-red dark:bg-darkModeColors-background dark:text-darkModeColors-orange`"
+          >
             {{ objPrintInfo.msg }}
           </span>
         </div>
       </div>
-    </main>
+    </div>
   </div>
 </template>

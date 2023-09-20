@@ -1,52 +1,125 @@
 <template>
-  <el-menu
-    default-active="2"
-    :collapse="isCollapse"
-    active-text-color="rgb(255, 124, 0)"
-    background-color="rgb(255, 163, 77) 24.4%"
-    text-color="rgb(255, 163, 77)"
-    class="sidebar"
-    >
-    <el-sub-menu index="1">
-      <template #title>
-        <el-icon><User /></el-icon>
-        <span>Perfil</span>
-      </template>
-      <el-menu-item-group>
-        <!-- <template #title><span>Group One</span></template> -->
-        <router-link to="/peliculas">
-          <el-menu-item index="1-1">Mis peliculas</el-menu-item>
-        </router-link>
-        <router-link to="/pendientes">
-          <el-menu-item index="1-1">Mis pendientes</el-menu-item>
-        </router-link>
-      </el-menu-item-group>
-    </el-sub-menu>
-    <router-link to="/settings" >
-      <el-menu-item index="4" >
-        <el-icon><setting /></el-icon>
-        <template #title>Opciones</template>
-      </el-menu-item>
-    </router-link>
-    <router-link to="/" >
-      <el-menu-item index="4" >
-        <el-icon><CircleCloseFilled /></el-icon>
-        <template #title>Cerrar sesion</template>
-      </el-menu-item>
-    </router-link>
-  </el-menu>
+  <div class="flex h-full flex-col justify-between">
+    <ul class="space-y-2">
+      <li v-for="(section, sectionKey) in sideBarSections" :key="sectionKey">
+        <div
+          @click="toogleOptions(sectionKey, section.path)"
+          class="text-gray-800 grid w-full cursor-pointer grid-cols-12 rounded-sm py-2 text-left hover:bg-ligthModeColors-red hover:text-ligthModeColors-background focus:outline-none hover:dark:bg-darkModeColors-orange hover:dark:text-darkModeColors-background"
+        >
+          <div class="col-span-1">
+            <el-icon class="h-full w-full"
+              ><component :is="section.icon"
+            /></el-icon>
+          </div>
+          <div class="col-span-11">
+            <span>{{ section.name }}</span>
+          </div>
+        </div>
+        <ul v-show="showOptions === sectionKey" class="pl-5">
+          <li
+            v-for="(child, childKey) in section.childs"
+            :key="childKey"
+            class="rounded-sm p-3 hover:bg-ligthModeColors-red hover:text-ligthModeColors-background hover:dark:bg-darkModeColors-orange hover:dark:text-darkModeColors-background"
+          >
+            <router-link
+              :to="{ name: child.path }"
+              class="grid w-full grid-cols-12"
+            >
+              <div class="col-span-1">
+                <el-icon class="2-full h-full"
+                  ><component :is="child.icon"
+                /></el-icon>
+              </div>
+              <div class="col-span-11">
+                <span>{{ child.name }}</span>
+              </div>
+            </router-link>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <div class="text-2xl">
+      <el-icon
+        class="cursor-pointer"
+        @click="changeTheme()"
+        v-if="opciones.nigthMode"
+        ><Sunny
+      /></el-icon>
+      <el-icon class="cursor-pointer" @click="changeTheme()" v-else
+        ><MoonNight
+      /></el-icon>
+    </div>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref, shallowRef } from "vue";
+import { useRouter } from "vue-router";
+import { changeOSTheme } from "../../utils/changeOsTheme";
 import {
-  Location,
   Setting,
   User,
-  CircleCloseFilled
-} from '@element-plus/icons-vue'
+  MoonNight,
+  Sunny,
+  CircleCloseFilled,
+  Film,
+  Clock,
+} from "@element-plus/icons-vue";
 
+const iconSetting = shallowRef(Setting);
+const iconUser = shallowRef(User);
+const iconFilm = shallowRef(Film);
+const iconClock = shallowRef(Clock);
 
-let isCollapse = ref(false)
+const iconCircleCloseFilled = shallowRef(CircleCloseFilled);
+const router = useRouter();
+const sideBarSections = ref({
+  perfil: {
+    name: "Perfil",
+    icon: iconUser,
+    path: "",
+    childs: [
+      {
+        name: "Mis peliculas",
+        icon: iconFilm,
+        path: "films",
+      },
+      {
+        name: "Mis pendientes",
+        icon: iconClock,
+        path: "pending",
+      },
+    ],
+  },
+  options: {
+    name: "Opciones",
+    icon: iconSetting,
+    path: "settings",
+    childs: [],
+  },
+  logOut: {
+    name: "Cerrar sesion",
+    icon: iconCircleCloseFilled,
+    path: "/",
+    childs: [],
+  },
+});
+const opciones = ref({
+  nigthMode: Boolean,
+});
 
+const showOptions = ref<string | null>(null);
+
+const changeTheme = async () => {
+  opciones.value.nigthMode = await changeOSTheme();
+};
+
+const toogleOptions = (sectionKey: string, path: string) => {
+  if (sideBarSections.value[sectionKey].childs.length === 0) {
+    // Redirige a la ruta deseada si childs está vacío
+    router.push(`/${path}`);
+  } else {
+    showOptions.value = showOptions.value === sectionKey ? null : sectionKey;
+  }
+};
 </script>

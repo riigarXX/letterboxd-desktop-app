@@ -1,18 +1,9 @@
 <script lang="ts" setup>
-import Calendar from '../UI/Calendar.vue'
-
+import Calendar from "../UI/Calendar.vue";
+import Card from "../UI/Card.vue";
 </script>
-<template lang="">
-  <div>
-    <el-card>
-      <template #header>
-      <div class="card-header">
-        <span class='title'>Mis peliculas</span>
-        <span class='date'>{{$moment().format('YYYY-MM-DD')}}</span>
-      </div>
-    </template>
-      <Calendar/>
-    </el-card>
-  </div>
+<template>
+  <Card :title="'Calendario de peliculas'">
+    <Calendar />
+  </Card>
 </template>
-

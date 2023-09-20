@@ -1,11 +1,4 @@
-<template lang="">
-    <router-view class='rigth-sidebar'></router-view>
+<script lang="ts" setup></script>
+<template>
+  <router-view class="h-[80%] w-[80%]" />
 </template>
-<script>
-export default {
-  
-}
-</script>
-<style lang="">
-  
-</style>
