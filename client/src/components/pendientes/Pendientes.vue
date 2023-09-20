@@ -1,13 +1,7 @@
-<template lang="">
-  <div>
-    Dieta
-  </div>
-</template>
-<script>
-export default {
-  
-}
+<script setup lang="ts">
+import Card from "../../components/UI/Card.vue";
 </script>
-<style lang="">
-  
-</style>
+<template lang="">
+  <Card :title="'Pendientes'"> Peliculas pendientes </Card>
+</template>
+<style lang=""></style>
