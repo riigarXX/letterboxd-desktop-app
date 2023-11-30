@@ -1,16 +1,17 @@
 <script setup lang="ts">
 import Sidebar from "../sidebar/Sidebar.vue";
 import MainView from "../main/Main.vue";
+import Container from "../UI/Container.vue";
 </script>
 <template>
-  <div class="grid h-screen grid-cols-1 gap-4 lg:grid-cols-4">
+  <div class="grid grid-cols-1 gap-4 lg:grid-cols-4">
     <div class="col-span-1 p-4 lg:col-span-1">
       <Sidebar />
     </div>
-    <div class="col-span-1 p-4 lg:col-span-3">
-      <div class="flex h-full items-center justify-center">
+    <div class="col-span-1 lg:col-span-3">
+      <Container>
         <MainView />
-      </div>
+      </Container>
     </div>
   </div>
 </template>

@@ -1,16 +1,12 @@
 <template lang="">
-  <div>
-    <Peliculas/>
-  </div>
+  <Peliculas />
 </template>
 <script>
-import Peliculas from '../components/peliculas/Peliculas.vue'
+import Peliculas from "../components/peliculas/Peliculas.vue";
 export default {
-  components:{
-    Peliculas
-  }
-}
+  components: {
+    Peliculas,
+  },
+};
 </script>
-<style lang="">
-  
-</style>
+<style lang=""></style>

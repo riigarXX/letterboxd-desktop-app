@@ -2,6 +2,7 @@ import { isAuthenticated } from "../../middleware/auth";
 import Dashboard from "../../pages/dashboard.vue";
 import Peliculas from "../../pages/peliculas.vue";
 import Pendientes from "../../pages/pendientes.vue";
+import Tendencias from "../../pages/tendencias.vue";
 import Settings from "../../pages/settings.vue";
 
 const dashboardRoutes = [
@@ -11,6 +12,12 @@ const dashboardRoutes = [
     component: Dashboard,
     beforeEnter: isAuthenticated,
     children: [
+      {
+        name: "trends",
+        path: "/trends",
+        component: Tendencias,
+        beforeEnter: isAuthenticated,
+      },
       {
         name: "films",
         path: "/films",

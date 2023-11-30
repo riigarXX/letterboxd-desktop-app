@@ -1,28 +1,37 @@
-<template lang="">
-    <el-container class="container">
-      <el-main>
-        <el-card>{{film}}</el-card>
-      </el-main>
-    </el-container>
-</template>
 <script setup lang="ts">
-import { AxiosResponse } from 'axios';
-import { onMounted,ref ,Ref} from 'vue';
-import { useRoute } from 'vue-router';
-import Film from "../../../../server/interfaces/FilmInterface"
-import api from '../../api/axiosInstance';
+import { onMounted, ref } from "vue";
+import { useRoute } from "vue-router";
+import api from "../../api/axiosInstance";
+import Card from "../UI/Card.vue";
+import Container from "../UI/Container.vue";
+import FilmInterface from "../../../../server/interfaces/FilmInterface";
+import moment from "moment";
 
-const route = useRoute()
+const router = useRoute();
+
+let film = ref<Array<FilmInterface>>();
 
 onMounted(() => {
-  loadFilmByDay()
-})
+  getFilms();
+});
 
-let film = ref<Film>()
-const loadFilmByDay = () => {
-  api.post('/film/loadFilmByDay',{day:route.params.ID}).then(({data}:AxiosResponse<Film>) => {
-    film.value = data
-  })
-}
-
+const getFilms = async () => {
+  const data = await api.post(
+    "http://localhost:3000/film/loadFilmByDay",
+    router.params.ID,
+  );
+  film.value = data.data;
+};
 </script>
+
+<template>
+  <Container>
+    <Card
+      :title="`Peliculas vistas ${moment(router.params.ID).format(
+        'YYYY-MM-DD',
+      )}`"
+    >
+      {{ film }}
+    </Card>
+  </Container>
+</template>

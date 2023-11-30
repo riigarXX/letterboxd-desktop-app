@@ -64,11 +64,13 @@ import {
   CircleCloseFilled,
   Film,
   Clock,
+  List,
 } from "@element-plus/icons-vue";
 
 const iconSetting = shallowRef(Setting);
 const iconUser = shallowRef(User);
 const iconFilm = shallowRef(Film);
+const iconList = shallowRef(List);
 const iconClock = shallowRef(Clock);
 
 const iconCircleCloseFilled = shallowRef(CircleCloseFilled);
@@ -79,6 +81,11 @@ const sideBarSections = ref({
     icon: iconUser,
     path: "",
     childs: [
+      {
+        name: "Tendencias",
+        icon: iconList,
+        path: "trends",
+      },
       {
         name: "Mis peliculas",
         icon: iconFilm,

@@ -117,11 +117,8 @@ app.on("activate", () => {
   }
 });
 
-// New window example arg: new windows url
-ipcMain.handle("openWindow", (_, arg) => {
+ipcMain.handle("openWindow", (_, args) => {
   const loadFilmWindow = new BrowserWindow({
-    titleBarStyle: "hidden",
-    transparent: true,
     width: 1400,
     height: 1000,
     titleBarOverlay: {
@@ -138,9 +135,7 @@ ipcMain.handle("openWindow", (_, arg) => {
   loadFilmWindow.webContents.openDevTools();
 
   if (process.env.VITE_DEV_SERVER_URL) {
-    loadFilmWindow.loadURL(`${url}#${arg}`);
-  } else {
-    loadFilmWindow.loadFile(indexHtml, { hash: arg });
+    loadFilmWindow.loadURL(`${url}#${args}`);
   }
 });
 

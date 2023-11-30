@@ -1,6 +1,11 @@
 export default interface FilmInterface {
-  nombre:string,
-  genero:string,
-  puntuacion:number
-  fechaInsercion:Date
+  name: string;
+  genre: string[];
+  score: number;
+  dateInsert: Date;
+  image: string;
+  adult: boolean;
+  id: number;
+  director: string | undefined;
+  isWatched: boolean;
 }

@@ -1,6 +1,17 @@
 body
   background: radial-gradient(circle at 110% 50.0%, rgb(253, 181, 166) 0%, rgb(253, 181, 166) 15.9%, rgb(255, 215, 233) 15.9%, rgb(255, 215, 233) 24.4%, rgb(233, 105, 85) 24.5%, rgb(233, 105, 85) 66%) !important
+  overflow: overlay
+::-webkit-scrollbar
+  width: 10px
+  height: 10px
+  &-thumb
+    background: #FDB5A6
+    border-radius: 4px
+  &-track
+    background: none
 
 @media (prefers-color-scheme: dark)
   body
     background: radial-gradient(circle at 110% 50.0%, rgb(255, 124, 0) 0%, rgb(255, 124, 0) 15.9%, rgb(255, 163, 77) 15.9%, rgb(255, 163, 77) 24.4%, rgb(19, 30, 37) 24.5%, rgb(19, 30, 37) 66%) !important
+  ::-webkit-scrollbar-thumb
+    background: #ffa34d

@@ -1,18 +1,12 @@
 <template lang="">
-  <div>
-    <Pelicula/>
-  </div>
+  <Pelicula />
 </template>
 <script lang="ts" setup>
-import { defineComponent } from 'vue';
-import Pelicula from '../components/pelicula/Pelicula.vue'
-
+import { defineComponent } from "vue";
+import Pelicula from "../components/pelicula/Pelicula.vue";
 
 defineComponent({
-  Pelicula  
-})
-
+  Pelicula,
+});
 </script>
-<style lang="">
-  
-</style>
+<style lang=""></style>
