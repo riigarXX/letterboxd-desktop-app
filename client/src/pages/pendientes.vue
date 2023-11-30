@@ -1,16 +1,12 @@
 <template lang="">
-  <div>
-    <Pendientes/>
-  </div>
+  <Pendientes />
 </template>
 <script>
-import Pendientes from '../components/pendientes/Pendientes.vue'
+import Pendientes from "../components/pendientes/Pendientes.vue";
 export default {
-  components:{
-    Pendientes
-  }
-}
+  components: {
+    Pendientes,
+  },
+};
 </script>
-<style lang="">
-  
-</style>
+<style lang=""></style>

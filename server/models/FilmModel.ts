@@ -2,23 +2,37 @@ import { Schema, model } from "mongoose";
 import FilmInterface from "../interfaces/FilmInterface";
 
 const userSchema = new Schema<FilmInterface>({
-  nombre: {
+  name: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
-  genero: {
-    type: String,
+  genre: {
+    type: [String],
     required: true,
   },
-  puntuacion:{
-    type:Number,
-    required:true
+  score: {
+    type: Number,
+    max: 10,
+    min: 0,
+    required: true,
   },
-  fechaInsercion:{
-    type:Date,
-    required:true
+  dateInsert: {
+    type: Date,
+    required: true,
   },
-})
+  adult: {
+    type: Boolean,
+    required: true,
+  },
+  image: {
+    type: String,
+    required: false,
+  },
+  director: {
+    type: [String, undefined],
+    required: false,
+  },
+});
 
-export default model('film', userSchema,'films')
+export default model("film", userSchema, "films");

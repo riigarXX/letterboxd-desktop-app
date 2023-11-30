@@ -1,4 +1,6 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { useRoute } from "vue-router";
+</script>
 <template>
-  <router-view class="h-[80%] w-[80%]" />
+  <router-view />
 </template>

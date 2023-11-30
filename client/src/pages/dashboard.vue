@@ -1,16 +1,12 @@
 <template lang="">
-  <div>
-    <Dashboard/>
-  </div>
+  <Dashboard />
 </template>
 <script>
-import Dashboard from '../components/dashboard/Dashboard.vue'
+import Dashboard from "../components/dashboard/Dashboard.vue";
 export default {
-  components:{
-    Dashboard
-  }
-}
+  components: {
+    Dashboard,
+  },
+};
 </script>
-<style lang="">
-  
-</style>
+<style lang=""></style>

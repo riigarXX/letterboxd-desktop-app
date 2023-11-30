@@ -31,6 +31,8 @@ module.exports = {
     },
     borderRadius: {
       sm: "4px",
+      md: "8px",
+      full: "50%",
     },
     extend: {},
   },

@@ -1,16 +1,12 @@
 <template lang="">
-  <div>
-    <AgregarPelicula/>
-  </div>
+  <AgregarPelicula />
 </template>
 <script>
-import AgregarPelicula from '../components/agregarPelicula/AgregarPelicula.vue'
+import AgregarPelicula from "../components/agregarPelicula/AgregarPelicula.vue";
 export default {
-  components:{
-    AgregarPelicula
-  }
-}
+  components: {
+    AgregarPelicula,
+  },
+};
 </script>
-<style lang="">
-  
-</style>
+<style lang=""></style>
