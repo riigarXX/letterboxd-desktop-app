@@ -11,9 +11,15 @@
     "esModuleInterop": true,
     "lib": ["ESNext", "DOM"],
     "skipLibCheck": true,
-    "noEmit": true
+    "noEmit": true,
+    "paths": {
+      "@/*": ["./src/*"],
+      "@componentsUI/*": ["./src/components/UI/*"],
+      "@apis/*": ["./src/api/*"],
+      "@types/*": ["../server/interfaces/*"],
+    }
   },
-  "include": ["src"],
+  "include": ["src","vite.config.ts"],
   "references": [
     { "path": "./tsconfig.node.json" }
   ]

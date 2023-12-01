@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch } from "vue";
+import { ref } from "vue";
 const inputValue = ref("");
 const props = defineProps({
   type: {
@@ -13,7 +13,7 @@ const props = defineProps({
 });
 
 const emits = defineEmits(["update:modelValue"]);
-const updateInputValue = (event) => {
+const updateInputValue = (event:any) => {
   inputValue.value = event.target.value;
   emits("update:modelValue", inputValue.value);
 };
@@ -24,7 +24,7 @@ const updateInputValue = (event) => {
     @input="updateInputValue"
     :type="props.type"
     :placeholder="props.placeholder"
-    class="rounded-sm bg-ligthModeColors-background p-2 text-center outline-none placeholder:text-ligthModeColors-red dark:bg-darkModeColors-background placeholder:dark:text-darkModeColors-orange"
+    class="p-2 text-center rounded-sm outline-none bg-ligthModeColors-background placeholder:text-ligthModeColors-red dark:bg-darkModeColors-background placeholder:dark:text-darkModeColors-orange"
   />
 </template>
 <style lang=""></style>

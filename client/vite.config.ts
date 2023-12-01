@@ -4,6 +4,7 @@ import vue from '@vitejs/plugin-vue'
 import electron from 'vite-plugin-electron'
 import renderer from 'vite-plugin-electron-renderer'
 import pkg from './package.json'
+import {fileURLToPath,URL} from 'url'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command }) => {
@@ -62,6 +63,14 @@ export default defineConfig(({ command }) => {
         nodeIntegration: true,
       }),
     ],
+    resolve: {
+      alias: [
+        { find: '@', replacement: fileURLToPath(new URL('./src', import.meta.url)) },
+        { find: '@componentsUI', replacement: fileURLToPath(new URL('./src/components/UI', import.meta.url)) },
+        { find: '@apis', replacement: fileURLToPath(new URL('./src/api/', import.meta.url)) },
+        { find: '@types', replacement: fileURLToPath(new URL('../server/interfaces', import.meta.url)) },
+      ]
+    },
     server: process.env.VSCODE_DEBUG && (() => {
       const url = new URL(pkg.debug.env.VITE_DEV_SERVER_URL)
       return {
