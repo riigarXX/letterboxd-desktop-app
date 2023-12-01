@@ -3,7 +3,7 @@ import { ref, onMounted, Ref } from "vue";
 import { AxiosResponse } from "axios";
 import api from "../../api/axiosInstance";
 import FilmInterface from "../../../../server/interfaces/FilmInterface";
-import {Card,Calendar} from "../UI/UI"
+import {Card,Calendar} from "../UI"
 
 onMounted(() => {
   loadFilms();

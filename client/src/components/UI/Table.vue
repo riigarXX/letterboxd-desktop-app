@@ -6,8 +6,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import type {Ref} from 'vue'
-import {ref,defineProps} from 'vue'
+
 defineProps({
   dataTable:Array,
   columns:Array

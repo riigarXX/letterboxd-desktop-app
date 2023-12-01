@@ -28,16 +28,16 @@ const selectOption = (option: FilmInterface) => {
 };
 </script>
 <template>
-  <div class="relative col-span-12 inline-block w-full">
+  <div class="relative inline-block w-full col-span-12">
     <button
       @click="toggleMenu"
       type="button"
-      class="inline-flex w-full justify-between rounded-sm bg-ligthModeColors-background p-3 text-left text-sm font-medium shadow-ligthModeColors-red outline-none dark:bg-darkModeColors-background dark:shadow-darkModeColors-orange"
+      class="inline-flex justify-between w-full p-3 text-sm font-medium text-left rounded-sm outline-none bg-ligthModeColors-background shadow-ligthModeColors-red dark:bg-darkModeColors-background dark:shadow-darkModeColors-orange"
     >
       {{ selectedOption || "Seleccionar opción" }}
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        class="-mr-1 ml-2 h-4 w-4"
+        class="w-4 h-4 ml-2 -mr-1"
         viewBox="0 0 20 20"
         fill="currentColor"
       >
@@ -50,14 +50,14 @@ const selectOption = (option: FilmInterface) => {
     </button>
     <div
       v-if="isMenuOpen"
-      class="absolute z-10 mt-4 max-h-64 w-full overflow-y-scroll rounded-sm bg-ligthModeColors-background shadow-lg dark:bg-darkModeColors-background"
+      class="absolute z-10 w-full mt-4 overflow-y-scroll rounded-sm shadow-lg max-h-64 bg-ligthModeColors-background dark:bg-darkModeColors-background"
     >
       <div class="py-1" v-if="props.items.length > 0">
         <a
           v-for="film in props.items"
           :key="film.id"
           @click="selectOption(film)"
-          class="block cursor-pointer px-4 py-2 text-sm hover:bg-ligthModeColors-card hover:dark:bg-darkModeColors-card"
+          class="block px-4 py-2 text-sm cursor-pointer hover:bg-ligthModeColors-card hover:dark:bg-darkModeColors-card"
         >
           {{ film.name }} - {{ film.score }}
         </a>
