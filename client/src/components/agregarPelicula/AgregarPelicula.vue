@@ -55,27 +55,28 @@ const updateFilmSelection = (selectedFilm: FilmInterface) => {
 <template>
   <Container>
     <Card :title="'Agregar pelicula'">
-      <div class="grid grid-cols-12 gap-4">
-        <Input v-model="inputValue" class="col-span-12 lg:col-span-10" type="text"
-          placeholder="Ingresa el nombre de tu pelicula" />
-        <Button @click="search" class="col-span-12 lg:col-span-2" />
-        <span class="col-span-12 text-center" v-if="error.visible">
-          {{ error.text }}
-        </span>
-
-        <Select :items="films" @updateFilmSelection="updateFilmSelection" class="col-span-12" :search-mode="searchMode" />
-        <div v-if="films.length > 0" class="col-span-12 h-[250px] overflow-y-scroll text-center md:h-[500px]">
-          <div class="grid grid-cols-12 gap-4">
-            <Film canDelete v-for="film in selectedFilms" :key="film.id" :film="film" @update:delete-film="deleteFilm" />
+        <div class="grid grid-cols-12 gap-4">
+          <Input v-model="inputValue" class="col-span-12 lg:col-span-10" type="text"
+            placeholder="Ingresa el nombre de tu pelicula" />
+          <Button @click="search" class="col-span-12 lg:col-span-2" />
+          <span class="col-span-12 text-center" v-if="error.visible">
+            {{ error.text }}
+          </span>
+          <Select :items="films" @updateFilmSelection="updateFilmSelection" class="col-span-12" :search-mode="searchMode" />
+        </div>
+        <div class="grid grid-cols-12 gap-4 mt-2">
+          <div  class="col-span-12 h-[250px] overflow-y-scroll text-center md:h-[500px]">
+            <div class="grid grid-cols-12 gap-4">
+              <Film canDelete v-for="film in selectedFilms" :key="film.id" :film="film" @update:delete-film="deleteFilm" />
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-span-12 mt-5 text-center">
-        <button @click="saveFilms"
-          class="px-4 py-2 rounded-sm bg-ligthModeColors-background text-ligthModeColors-red hover:bg-ligthModeColors-red hover:text-ligthModeColors-background dark:bg-darkModeColors-background dark:text-darkModeColors-orange hover:dark:bg-darkModeColors-orange hover:dark:text-darkModeColors-background">
-          Guardar peliculas
-        </button>
-      </div>
+        <div class="col-span-12 mt-2 text-center">
+          <button @click="saveFilms"
+            class="px-4 py-2 rounded-sm bg-ligthModeColors-background text-ligthModeColors-red hover:bg-ligthModeColors-red hover:text-ligthModeColors-background dark:bg-darkModeColors-background dark:text-darkModeColors-orange hover:dark:bg-darkModeColors-orange hover:dark:text-darkModeColors-background">
+            Guardar peliculas
+          </button>
+        </div>
     </Card>
   </Container>
 </template>
