@@ -1,57 +1,3 @@
-<template>
-  <div class="flex h-full flex-col justify-between">
-    <ul class="space-y-2">
-      <li v-for="(section, sectionKey) in sideBarSections" :key="sectionKey">
-        <div
-          @click="toogleOptions(sectionKey, section.path)"
-          class="text-gray-800 grid w-full cursor-pointer grid-cols-12 rounded-sm py-2 text-left hover:bg-ligthModeColors-red hover:text-ligthModeColors-background focus:outline-none hover:dark:bg-darkModeColors-orange hover:dark:text-darkModeColors-background"
-        >
-          <div class="col-span-1">
-            <el-icon class="h-full w-full"
-              ><component :is="section.icon"
-            /></el-icon>
-          </div>
-          <div class="col-span-11">
-            <span>{{ section.name }}</span>
-          </div>
-        </div>
-        <ul v-show="showOptions === sectionKey" class="pl-5">
-          <li
-            v-for="(child, childKey) in section.childs"
-            :key="childKey"
-            class="rounded-sm p-3 hover:bg-ligthModeColors-red hover:text-ligthModeColors-background hover:dark:bg-darkModeColors-orange hover:dark:text-darkModeColors-background"
-          >
-            <router-link
-              :to="{ name: child.path }"
-              class="grid w-full grid-cols-12"
-            >
-              <div class="col-span-1">
-                <el-icon class="2-full h-full"
-                  ><component :is="child.icon"
-                /></el-icon>
-              </div>
-              <div class="col-span-11">
-                <span>{{ child.name }}</span>
-              </div>
-            </router-link>
-          </li>
-        </ul>
-      </li>
-    </ul>
-    <div class="text-2xl">
-      <el-icon
-        class="cursor-pointer"
-        @click="changeTheme()"
-        v-if="opciones.nigthMode"
-        ><Sunny
-      /></el-icon>
-      <el-icon class="cursor-pointer" @click="changeTheme()" v-else
-        ><MoonNight
-      /></el-icon>
-    </div>
-  </div>
-</template>
-
 <script lang="ts" setup>
 import { ref, shallowRef } from "vue";
 import { useRouter } from "vue-router";
@@ -130,3 +76,47 @@ const toogleOptions = (sectionKey: string, path: string) => {
   }
 };
 </script>
+
+<template>
+  <div class="flex flex-col justify-between h-full">
+    <ul class="space-y-2">
+      <li v-for="(section, sectionKey) in sideBarSections" :key="sectionKey">
+        <div @click="toogleOptions(sectionKey, section.path)"
+          class="grid w-full grid-cols-12 py-2 text-left text-gray-800 rounded-sm cursor-pointer hover:bg-ligthModeColors-red hover:text-ligthModeColors-background focus:outline-none hover:dark:bg-darkModeColors-orange hover:dark:text-darkModeColors-background">
+          <div class="col-span-1">
+            <el-icon class="w-full h-full">
+              <component :is="section.icon" />
+            </el-icon>
+          </div>
+          <div class="col-span-11">
+            <span>{{ section.name }}</span>
+          </div>
+        </div>
+        <ul v-show="showOptions === sectionKey" class="pl-5">
+          <li v-for="(child, childKey) in section.childs" :key="childKey">
+            <router-link :to="{ name: child.path }"
+              class="grid w-full grid-cols-12 gap-4 p-3 rounded-sm hover:bg-ligthModeColors-red hover:text-ligthModeColors-background hover:dark:bg-darkModeColors-orange hover:dark:text-darkModeColors-background">
+              <div class="col-span-1">
+                <el-icon class="h-full 2-full">
+                  <component :is="child.icon" />
+                </el-icon>
+              </div>
+              <div class="col-span-11">
+                <span>{{ child.name }}</span>
+              </div>
+            </router-link>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <div class="text-2xl">
+      <el-icon class="cursor-pointer" @click="changeTheme()" v-if="opciones.nigthMode">
+        <Sunny />
+      </el-icon>
+      <el-icon class="cursor-pointer" @click="changeTheme()" v-else>
+        <MoonNight />
+      </el-icon>
+    </div>
+  </div>
+</template>
+

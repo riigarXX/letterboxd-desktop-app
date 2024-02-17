@@ -1,33 +1,3 @@
-<template>
-  <el-calendar class="bg-ligthModeColors-card dark:bg-darkModeColors-card">
-    <template #date-cell="{ data }">
-      <div>{{ data.day.split("-")[1] }} - {{ data.day.split("-")[2] }}</div>
-      <div class="m-2 flex items-center justify-center gap-3">
-        <div v-if="filmsWatched(data.day)?.length > 0">
-          <button
-            class="flex h-[24px] w-[24px] items-center justify-center rounded-full bg-ligthModeColors-red text-ligthModeColors-background dark:bg-darkModeColors-orange dark:text-darkModeColors-background"
-            @click="loadFilm(filmsWatched(data.day))"
-          >
-            <el-icon>
-              <Film />
-            </el-icon>
-          </button>
-        </div>
-        <div>
-          <button
-            class="flex h-[24px] w-[24px] items-center justify-center rounded-full bg-ligthModeColors-red text-ligthModeColors-background dark:bg-darkModeColors-orange dark:text-darkModeColors-background"
-            @click="addFilm(data.day)"
-          >
-            <el-icon>
-              <Plus />
-            </el-icon>
-          </button>
-        </div>
-      </div>
-    </template>
-  </el-calendar>
-</template>
-
 <script setup lang="ts">
 import { ipcRenderer } from "electron";
 import moment from "moment";
@@ -54,7 +24,35 @@ const loadFilm = (arrayFilms: Array<FilmInterface>) => {
   );
 };
 const addFilm = (date: Date) => {
-  console.log(date);
   ipcRenderer.invoke(`openWindow`, `/addFilm/${date}`);
 };
 </script>
+<template>
+  <el-calendar class="bg-ligthModeColors-card dark:bg-darkModeColors-card">
+    <template #date-cell="{ data }">
+      <div>{{ data.day.split("-")[1] }} - {{ data.day.split("-")[2] }}</div>
+      <div class="flex items-center justify-center gap-3 m-2">
+        <div v-if="filmsWatched(data.day)?.length > 0">
+          <button
+            class="flex h-[24px] w-[24px] items-center justify-center rounded-full bg-ligthModeColors-red text-ligthModeColors-background dark:bg-darkModeColors-orange dark:text-darkModeColors-background"
+            @click="loadFilm(filmsWatched(data.day))">
+            <el-icon>
+              <Film />
+            </el-icon>
+          </button>
+        </div>
+        <div>
+          <button
+            class="flex h-[24px] w-[24px] items-center justify-center rounded-full bg-ligthModeColors-red text-ligthModeColors-background dark:bg-darkModeColors-orange dark:text-darkModeColors-background"
+            @click="addFilm(data.day)">
+            <el-icon>
+              <Plus />
+            </el-icon>
+          </button>
+        </div>
+      </div>
+    </template>
+  </el-calendar>
+</template>
+
+

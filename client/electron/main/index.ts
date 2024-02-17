@@ -4,8 +4,12 @@ import {
   shell,
   ipcMain,
   nativeTheme,
+  Menu,
   systemPreferences,
+  ipcRenderer,
 } from "electron";
+import menuTemplate from "../menu/customMenu";
+
 import path from "path/posix";
 import { release } from "node:os";
 import { join } from "node:path";
@@ -70,6 +74,8 @@ async function createWindow() {
       contextIsolation: false,
     },
   });
+  const menu = Menu.buildFromTemplate(menuTemplate);
+  Menu.setApplicationMenu(menu);
 
   if (process.env.VITE_DEV_SERVER_URL) {
     // electron-vite-vue#298
@@ -117,7 +123,12 @@ app.on("activate", () => {
   }
 });
 
-ipcMain.handle("openWindow", (_, args) => {
+ipcMain.on("open-all-routes", (route) => {
+  secondWindow(route);
+});
+
+const secondWindow = (args = "") => {
+  console.log(args);
   const loadFilmWindow = new BrowserWindow({
     width: 1400,
     height: 1000,
@@ -137,8 +148,11 @@ ipcMain.handle("openWindow", (_, args) => {
   if (process.env.VITE_DEV_SERVER_URL) {
     loadFilmWindow.loadURL(`${url}#${args}`);
   }
-});
+};
 
+ipcMain.handle("openWindow", (_, args) => {
+  secondWindow(args);
+});
 ipcMain.handle("dark-mode", () => {
   if (nativeTheme.shouldUseDarkColors) {
     nativeTheme.themeSource = "light";
@@ -146,4 +160,7 @@ ipcMain.handle("dark-mode", () => {
     nativeTheme.themeSource = "dark";
   }
   return nativeTheme.shouldUseDarkColors;
+});
+ipcMain.handle("send", (e) => {
+  console.log(e);
 });

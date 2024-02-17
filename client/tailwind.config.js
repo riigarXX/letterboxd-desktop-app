@@ -29,11 +29,6 @@ module.exports = {
     fontFamily: {
       montserrat: ['"Montserrat"'],
     },
-    borderRadius: {
-      sm: "4px",
-      md: "8px",
-      full: "50%",
-    },
     extend: {},
   },
   plugins: [],

@@ -1,9 +1,8 @@
 <script lang="ts" setup>
 import { ref, onMounted, Ref } from "vue";
-import { AxiosResponse } from "axios";
 import api from "../../api/axiosInstance";
 import FilmInterface from "../../../../server/interfaces/FilmInterface";
-import {Card,Calendar} from "../UI"
+import { Card, Calendar } from "../UI"
 
 onMounted(() => {
   loadFilms();
@@ -12,8 +11,8 @@ onMounted(() => {
 const arrayData: Ref<Array<FilmInterface>> = ref([]);
 
 const loadFilms = () => {
-  api("/film/getFilms").then((res: AxiosResponse<Array<FilmInterface>>) => {
-    arrayData.value = res.data;
+  api.get("/film/films").then((res) => {
+    arrayData.value = res.data.films;
   });
 };
 </script>
