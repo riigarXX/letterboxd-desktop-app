@@ -5,7 +5,6 @@ const router = express.Router()
 
 router.get('/films', verifyToken, getFilms)
 router.get('/films/:id', verifyToken, loadFilmByDay)
-router.post('/saveFilm', verifyToken, saveFilm)
-router.get('/films/filmsNoViewed', verifyToken, getFilmsNoViewed)
-
+router.post('/films', verifyToken, saveFilm)
+router.get('/filmsNoViewed', verifyToken, getFilmsNoViewed)
 module.exports = router

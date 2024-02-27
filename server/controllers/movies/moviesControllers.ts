@@ -21,27 +21,24 @@ export const loadFilmByDay = async (req: Request, res: Response) => {
 	})
 };
 export const saveFilm = async (req: Request, res: Response) => {
-	const { day } = req.body;
-	console.log(day);
+	const { films, day } = req.body
+
+	const filmsWithDate = films.map((film: FilmInterface) => ({ ...film, dateInsert: day }));
 	try {
-		const film = new FilmModel({
-			nombre: "",
-			puntuacion: "",
-			genero: "",
-			fechaInsercion: "",
-		});
-		await film.save();
+		await FilmModel.insertMany(filmsWithDate, { ordered: false });
 		res
 			.status(200)
 			.json({ status: true, msg: "Pelicula creada correctamente" });
 	} catch (error) {
+		console.log(error)
 		res.status(500).json({ status: false, msg: "Error interno del servidor" });
 	}
 };
 
 export const getFilmsNoViewed = async (req: Request, res: Response) => {
-	FilmModel.find({ isWatched: false }).then(filmsNoViewd => {
-		res.json({ films: filmsNoViewd })
+	FilmModel.find({ isWatched: false }).then(filmsNoViewed => {
+		console.log(filmsNoViewed)
+		res.json({ films: filmsNoViewed })
 	}).catch((e: mongoose.Error) => {
 		res.status(500).json({ status: false, msg: "Error interno del servidor" });
 	})
