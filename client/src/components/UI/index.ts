@@ -7,15 +7,17 @@ import Form from "./Form.vue"
 import Input from "./Input.vue"
 import Select from "./Select.vue"
 import Table from "./Table.vue"
+import SearchFilm from "./SearchFilm.vue"
 
 export {
-  Button,
-  Calendar,
-  Card,
-  Container,
-  Film,
-  Form,
-  Input,
-  Select,
-  Table
+	Button,
+	Calendar,
+	Card,
+	Container,
+	Film,
+	Form,
+	Input,
+	Select,
+	Table,
+	SearchFilm
 }
